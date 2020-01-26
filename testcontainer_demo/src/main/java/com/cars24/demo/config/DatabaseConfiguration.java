@@ -38,6 +38,7 @@ public class DatabaseConfiguration {
     em.setPackagesToScan("com.cars24.demo.dao.*");
 
     final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+    vendorAdapter.setShowSql(Boolean.valueOf(env.getProperty("hibernate.show_sql")));
     em.setJpaVendorAdapter(vendorAdapter);
     final HashMap<String, Object> properties = new HashMap<String, Object>();
     properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
