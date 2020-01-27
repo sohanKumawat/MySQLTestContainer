@@ -24,21 +24,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>net.ttddyy</groupId> <artifactId>datasource-proxy</artifactId> 
-			<version>${datasource-proxy.version}</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -57,17 +47,22 @@
 
 		<!-- Test Dependencies -->
 
-
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.14.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.spockframework</groupId>
 			<artifactId>spock-core</artifactId>
@@ -81,14 +76,7 @@
 			<version>1.2-groovy-2.4</version>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>spock</artifactId>
-			<version>1.12.5</version>
-			<scope>test</scope>
-		</dependency>
-
+		<!-- Test containers only dependencies -->
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>mysql</artifactId>
@@ -97,12 +85,6 @@
 		</dependency>
 		<!-- Test containers only dependencies -->
 	</dependencies>
-
-	<properties>
-		<datasource-proxy.version>1.4.1</datasource-proxy.version>
-		<guava.version>21.0</guava.version>
-		<h2.version>1.4.200</h2.version>
-	</properties>
 
 	<build>
 		<plugins>
@@ -126,43 +108,18 @@
 					<testSources>
 						<testSource>
 							<directory>${project.basedir}/src/test/java</directory>
-							<includes>
-								<include>**/*.groovy</include>
-							</includes>
+							 <includes> <include>**/*.groovy</include> </includes>
 						</testSource>
 					</testSources>
 				</configuration>
 			</plugin>
 
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<configuration>
-					<effort>Max</effort>
-					<failOnError>false</failOnError>
-					<threshold>Low</threshold>
-					<xmlOutput>true</xmlOutput>
-					<findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.openclover</groupId>
-				<artifactId>clover-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>2.21.0</version>
-				<configuration>
-					<testSourceDirectory>src/test/java</testSourceDirectory>
-					<includes>
-						<include>**/*Spec.groovy</include>
-					</includes>
-				</configuration>
+				<!-- <configuration> <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory> 
+					<includes> <include>**/*Spec.groovy</include> </includes> </configuration> -->
 			</plugin>
 		</plugins>
 	</build>

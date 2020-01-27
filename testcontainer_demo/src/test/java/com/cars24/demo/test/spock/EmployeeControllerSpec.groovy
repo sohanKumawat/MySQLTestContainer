@@ -1,20 +1,33 @@
-package com.cars24.demo.test;
+package com.cars24.demo.test.spock;
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.MockMvc
+import com.cars24.demo.DemoApplication
 import com.cars24.demo.bean.EmployeeBean
-import com.cars24.demo.config.WebComponentsConfigSpock
-import com.cars24.demo.dateprovider.DataProvider
+import com.cars24.demo.test.config.TestContainerInitilizer
+import com.cars24.demo.test.dateprovider.DataProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import spock.lang.Shared
+import spock.lang.Specification
 
-class EmployeeControllerSpec extends WebComponentsConfigSpock {
+@AutoConfigureMockMvc
+@SpringBootTest(classes = DemoApplication.class)
+@ActiveProfiles("test")
+@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
+@ContextConfiguration(initializers = TestContainerInitilizer.Initializer.class)
+class EmployeeControllerSpec extends Specification {
 
   @Autowired
   private MockMvc mvc
-
+  
   // Must be @Shared or static!
   def @Shared ObjectMapper mapper
 
@@ -37,7 +50,6 @@ class EmployeeControllerSpec extends WebComponentsConfigSpock {
     EmployeeBean request = DataProvider.getEmployee();
     request.setName(name)
     request.setDepartment(department)
-
 
     mvc.perform(post("/employee")
         .contentType(org.springframework.http.MediaType.APPLICATION_JSON)

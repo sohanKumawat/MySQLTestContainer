@@ -13,7 +13,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import com.google.common.base.Preconditions;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.cars24.demo.dao.*",
@@ -36,6 +35,7 @@ public class DatabaseConfiguration {
     final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
     em.setDataSource(productDataSource());
     em.setPackagesToScan("com.cars24.demo.dao.*");
+    em.setPersistenceUnitName("productPUnit");
 
     final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     vendorAdapter.setShowSql(Boolean.valueOf(env.getProperty("hibernate.show_sql")));
@@ -58,11 +58,10 @@ public class DatabaseConfiguration {
     System.out.println("jdbc.pass " + env.getProperty("jdbc.pass"));
     System.out.println("jdbc.pass " + env.getProperty("jdbc.pass"));
     final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName(
-        Preconditions.checkNotNull(env.getProperty("spring.datasource.driverClassName")));
-    dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("product.jdbc.url")));
-    dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
-    dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
+    dataSource.setDriverClassName(env.getProperty("spring.datasource.driverClassName"));
+    dataSource.setUrl(env.getProperty("product.jdbc.url"));
+    dataSource.setUsername(env.getProperty("jdbc.user"));
+    dataSource.setPassword(env.getProperty("jdbc.pass"));
 
     return dataSource;
   }

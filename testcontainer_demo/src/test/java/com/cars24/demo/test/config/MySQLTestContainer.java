@@ -1,7 +1,9 @@
-package com.cars24.demo.config;
+package com.cars24.demo.test.config;
 
+import org.springframework.context.annotation.Profile;
 import org.testcontainers.containers.MySQLContainer;
 
+@Profile("test")
 public class MySQLTestContainer extends MySQLContainer<MySQLTestContainer> {
 
   private static String IMAGE_VERSION = "5.7.22";

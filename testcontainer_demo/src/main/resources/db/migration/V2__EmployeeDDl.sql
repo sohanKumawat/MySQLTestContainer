@@ -8,3 +8,7 @@ CREATE TABLE `employee` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+insert into  `employee` (id,name,salary,department,created_by,created_at) VALUES (1,'Sohan', '20000', 'tech','admin@cars24.com',now()); 
+insert into  `employee` (id,name,salary,department,created_by,created_at) VALUES (2,'Sohan1', '20000', 'tech','admin@cars24.com',now());
+insert into  `employee` (id,name,salary,department,created_by,created_at) VALUES (3,'Sohan2', '20000', 'tech','admin@cars24.com',now());
