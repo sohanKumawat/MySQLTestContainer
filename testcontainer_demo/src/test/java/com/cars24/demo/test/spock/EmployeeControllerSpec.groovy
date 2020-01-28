@@ -27,7 +27,7 @@ class EmployeeControllerSpec extends Specification {
 
   @Autowired
   private MockMvc mvc
-  
+
   // Must be @Shared or static!
   def @Shared ObjectMapper mapper
 

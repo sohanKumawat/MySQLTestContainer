@@ -21,13 +21,13 @@ import com.cars24.demo.test.config.TestContainerInitilizer;
 @SpringBootTest(classes = DemoApplication.class)
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @ContextConfiguration(initializers = TestContainerInitilizer.Initializer.class)
-public class EmployeeServiceTest2 {
+public class EmployeeServiceTest {
 
   @Autowired
   private EmployeeService employeeService;
 
   @Test
-  public void testEmployee2() throws Exception {
+  public void testEmployee() throws Exception {
     EmployeeBean employeeBean = employeeService
         .save(EmployeeBean.builder().name("sohan").department("tech").salary("100k").build());
     List<EmployeeBean> employeeBeans = employeeService.findByName("sohan");

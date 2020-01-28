@@ -16,4 +16,6 @@ public interface EmployeeService {
 
   List<EmployeeBean> findByDepartment(String department);
 
+  int sum(int a, int b);
+
 }

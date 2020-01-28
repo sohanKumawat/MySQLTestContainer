@@ -1,4 +1,4 @@
-package com.cars24.demo.dao.service;
+package com.cars24.demo.dao.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cars24.demo.dao.entity.EmployeeEntity;
 import com.cars24.demo.dao.repository.EmployeeRepository;
+import com.cars24.demo.dao.service.EmployeeDaoService;
 
 @Service
 public class EmployeeDaoServiceImpl implements EmployeeDaoService {

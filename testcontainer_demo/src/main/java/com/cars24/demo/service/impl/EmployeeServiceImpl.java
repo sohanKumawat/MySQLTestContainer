@@ -1,4 +1,4 @@
-package com.cars24.demo.service;
+package com.cars24.demo.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import com.cars24.demo.bean.EmployeeBean;
 import com.cars24.demo.dao.entity.EmployeeEntity;
 import com.cars24.demo.dao.service.EmployeeDaoService;
 import com.cars24.demo.exception.ValidationException;
+import com.cars24.demo.service.EmployeeService;
 import com.cars24.demo.utils.ObjectMapperUtil;
 
 @Service
@@ -15,6 +16,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Autowired
   private EmployeeDaoService employeeDaoService;
+
+  @Autowired
+  private DemoService demoService;
+
 
   @Override
   public EmployeeBean findById(Long id) {
@@ -48,5 +53,10 @@ public class EmployeeServiceImpl implements EmployeeService {
   public List<EmployeeBean> saveAll(List<EmployeeBean> employee) {
     List<EmployeeEntity> entity = ObjectMapperUtil.listMapper(employee, EmployeeEntity.class);
     return ObjectMapperUtil.listMapper(entity, EmployeeBean.class);
+  }
+
+  @Override
+  public int sum(int a, int b) {
+    return demoService.add(a, b) + 30;
   }
 }

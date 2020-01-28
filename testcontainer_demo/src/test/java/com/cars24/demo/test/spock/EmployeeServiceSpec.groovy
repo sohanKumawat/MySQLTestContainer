@@ -46,24 +46,42 @@ class EmployeeServiceSpec extends Specification {
   }
 
 
-  def"SaveEmployee"()
+  def "SaveEmployee"()
   {
+
+    //setup block
+    //when and then blocks
+    //expect block
+    //cleanup block
+    //where block
     given:
     EmployeeBean request = DataProvider.getEmployee();
     request.setName(name)
     request.setDepartment(department)
 
-    when :
+    def dbId=0;
+
+    when : "Pass the employee bean request and save into the db"
     EmployeeBean employeeBean = employeeService
         .save(request);
 
-    then:
-    employeeBean.getName()== result
+    then: "Compare the save entity name value with passed name value"
+    EmployeeBean employee1 = employeeService
+        .findById(employeeBean.getId());
+
+    then: "Compare the save entity name value with passed name value"
+    employee1.getName()== result
+
+    and: 'Should return null when a value is not found with the given key'
+    employee1.getUserBy() == null
+
+    //cleanup:
+
 
     where:
     name            | department      || result
     "uttarpradesh11"| "786"           || "uttarpradesh11"
-    "12342"         | "123"           || "123421"
+    "12342"         | "123"           || "12342"
     "123451"        | "1234"          || "123451"
   }
 }
