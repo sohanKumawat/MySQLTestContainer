@@ -6,6 +6,8 @@ CREATE TABLE `employee` (
   `department` varchar(100) DEFAULT NULL,
   `created_by` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `updated_by` varchar(50) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 

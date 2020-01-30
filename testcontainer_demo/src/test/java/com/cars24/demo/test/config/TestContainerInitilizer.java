@@ -1,15 +1,15 @@
 package com.cars24.demo.test.config;
 
-import org.junit.ClassRule;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Profile;
 import org.testcontainers.containers.MySQLContainer;
+import spock.lang.Shared;
 
 @Profile("test")
 public class TestContainerInitilizer {
 
-  @ClassRule
+  @Shared
   public static MySQLContainer<MySQLTestContainer> mySQLContainer = MySQLTestContainer
       .getInstance("mysql/mysql-server", "PRODUCTS").withUsername("root").withPassword("root");
 

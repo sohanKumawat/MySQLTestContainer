@@ -1,5 +1,8 @@
 package com.cars24.demo.test.spock;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -17,6 +20,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Unroll
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = DemoApplication.class)
@@ -43,7 +47,7 @@ class EmployeeControllerSpec extends Specification {
     println("Cleanup after all tests!")
   }
 
-
+  @Unroll
   def"SaveEmployee"()
   {
     given:
@@ -51,14 +55,18 @@ class EmployeeControllerSpec extends Specification {
     request.setName(name)
     request.setDepartment(department)
 
-    mvc.perform(post("/employee")
+    mvc.perform(post("/employee/")
         .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
         .content(mapper.writeValueAsString(request)))
         .andExpect(status().is(result))
         .andReturn()
         .response != null
 
-    expect: "Status is 200"
+    //    mvc.perform(get("/employee/name/"+name)
+    //        .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
+    //        .andExpect(status().is(result))
+    //        .andReturn()
+    //        .response != null
 
     where:
     name            | department      || result
@@ -69,21 +77,16 @@ class EmployeeControllerSpec extends Specification {
 
   def"findEmployee"()
   {
-    given:
-    def eName=empName
-    mvc.perform(get("/employee/name/"+eName)
-        .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
-        .content(mapper.writeValueAsString(request)))
+    mvc.perform(get("/employee/name/"+empName)
+        .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
         .andExpect(status().is(result))
         .andReturn()
         .response != null
-
     where:
     empName               || result
     "uttarpradesh11"      || 200
     "12342"               || 200
-    "sdfgd"               || 400
-
+    "123451"              || 200
   }
 
 }

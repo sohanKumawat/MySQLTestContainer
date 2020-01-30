@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -23,13 +24,8 @@ public class DatabaseConfiguration {
   @Autowired
   private Environment env;
 
-  public DatabaseConfiguration() {
-    super();
-  }
-
-  //
-
   @Bean("productEntityManager")
+  @Primary
   public LocalContainerEntityManagerFactoryBean productEntityManager() {
     System.out.println("hbm2ddl " + env.getProperty("hibernate.hbm2ddl.auto"));
     final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -41,7 +37,7 @@ public class DatabaseConfiguration {
     vendorAdapter.setShowSql(Boolean.valueOf(env.getProperty("hibernate.show_sql")));
     em.setJpaVendorAdapter(vendorAdapter);
     final HashMap<String, Object> properties = new HashMap<String, Object>();
-    properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+    properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl"));
     properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
     em.setJpaPropertyMap(properties);
 
@@ -49,6 +45,7 @@ public class DatabaseConfiguration {
   }
 
   @Bean("productDataSource")
+  @Primary
   public DataSource productDataSource() {
 
     System.out.println("product.jdbc.url " + env.getProperty("product.jdbc.url"));
@@ -67,6 +64,7 @@ public class DatabaseConfiguration {
   }
 
   @Bean("productTransactionManager")
+  @Primary
   public PlatformTransactionManager productTransactionManager() {
     final JpaTransactionManager transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(productEntityManager().getObject());

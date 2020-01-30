@@ -3,6 +3,7 @@ package com.cars24.demo.web;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,17 +21,17 @@ public class EmployeeController {
 
 
   @GetMapping("/{id}")
-  public EmployeeBean findById(Long id) {
+  public EmployeeBean findById(@PathVariable Long id) {
     return employeeService.findById(id);
   }
 
   @GetMapping("/name/{name}")
-  public List<EmployeeBean> findByName(String name) {
+  public List<EmployeeBean> findByName(@PathVariable String name) {
     return employeeService.findByName(name);
   }
 
   @GetMapping("/department/{department}")
-  public List<EmployeeBean> findByDepartment(String department) {
+  public List<EmployeeBean> findByDepartment(@PathVariable String department) {
     return employeeService.findByDepartment(department);
   }
 

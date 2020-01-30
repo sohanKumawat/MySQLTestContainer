@@ -6,6 +6,8 @@ Springboot, MySQLContainer,Flyway migration, Spock test cases.
    mvn clean test-compile  - compile the groovy file
    mvn clean test   - excute all the test cases
    
+   mvn surefire-report:report 
+   
    MySQLContainer dependecy - 
    
     <dependency>
@@ -14,7 +16,8 @@ Springboot, MySQLContainer,Flyway migration, Spock test cases.
 			<version>1.12.5</version>
 			<scope>test</scope>
 	</dependency>
-		
+		https://github.com/sohanKumawat/MySQLTestContainer.git
+		https://github.com/sohanKumawat/MySQLTestContainer.git
 		
 Spock dependency and plugin - 
 
