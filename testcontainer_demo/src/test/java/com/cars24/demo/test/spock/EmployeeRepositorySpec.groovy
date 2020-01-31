@@ -41,10 +41,10 @@ class EmployeeRepositorySpec extends Specification {
   {
 
     given :
-    EmployeeEntity EMPLOYEE1 = new EmployeeEntity(name,salary,department);
+    EmployeeEntity employee1 = new EmployeeEntity(name,salary,department);
 
     when:
-    EmployeeEntity savedEntity= employeeRepository.save(EMPLOYEE1);
+    EmployeeEntity savedEntity= employeeRepository.save(employee1);
 
     then:
     EmployeeEntity findEntity= employeeRepository.findByName(name);
@@ -58,8 +58,6 @@ class EmployeeRepositorySpec extends Specification {
     "uttarpradesh11" | "10000"   | "786"           || 200
     "12342"          | "20000"   | "123"           || 200
     "123451"         | "50000"   | "1234"          || 200
-
-
 
   }
 }
