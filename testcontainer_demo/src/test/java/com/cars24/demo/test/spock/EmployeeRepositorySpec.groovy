@@ -28,9 +28,6 @@ class EmployeeRepositorySpec extends Specification {
   // Must be @Shared or static!
   def @Shared ObjectMapper mapper
 
-  // private static final EmployeeEntity EMPLOYEE1 = new EmployeeEntity("John","10000","tech");
-  // private static final EmployeeEntity EMPLOYEE2 = new EmployeeEntity("Alice","15000","Operation");
-
   @Autowired
   private EmployeeRepository employeeRepository;
 

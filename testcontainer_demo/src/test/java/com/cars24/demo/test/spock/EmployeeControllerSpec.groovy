@@ -77,8 +77,6 @@ class EmployeeControllerSpec extends Specification {
 
   def"findEmployee"()
   {
-
-
     mvc.perform(get("/employee/name/"+empName)
         .contentType(org.springframework.http.MediaType.APPLICATION_JSON))
         .andExpect(status().is(result))

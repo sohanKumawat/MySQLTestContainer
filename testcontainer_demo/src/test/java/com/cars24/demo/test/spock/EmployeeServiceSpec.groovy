@@ -18,6 +18,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
+import spock.lang.Unroll
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = DemoApplication.class)
@@ -47,7 +48,7 @@ class EmployeeServiceSpec extends Specification {
     println("Cleanup after all tests!")
   }
 
-
+  @Unroll
   def "SaveEmployee"()
   {
 
