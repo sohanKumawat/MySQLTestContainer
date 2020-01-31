@@ -5,10 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Entity(name = "employee")
 public class EmployeeEntity extends BaseEntity {
@@ -23,5 +27,7 @@ public class EmployeeEntity extends BaseEntity {
   private String salary;
 
   private String department;
+
+
 
 }

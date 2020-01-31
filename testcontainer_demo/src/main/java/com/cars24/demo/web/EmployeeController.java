@@ -26,7 +26,7 @@ public class EmployeeController {
   }
 
   @GetMapping("/name/{name}")
-  public List<EmployeeBean> findByName(@PathVariable String name) {
+  public EmployeeBean findByName(@PathVariable String name) {
     return employeeService.findByName(name);
   }
 

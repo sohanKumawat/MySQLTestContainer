@@ -4,13 +4,13 @@
 <suite name="EmployeeServiceTestSuite">
 	<test name="EmployeeService1">
 		<classes>
-			<class name="com.cars24.demo.testng.EmployeServiceTest" />
+			<class name="com.cars24.demo.test.testng.EmployeeServiceTest" />
 		</classes>
 	</test>
 
 	<test name="EmployeeService2">
 		<classes>
-			<class name="com.cars24.demo.testng.EmployeeServiceTest2" />
+			<class name="com.cars24.demo.test.spock.EmployeeServiceMockSpec" />
 		</classes>
 	</test>
 </suite>

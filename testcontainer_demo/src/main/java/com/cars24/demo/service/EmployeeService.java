@@ -12,7 +12,7 @@ public interface EmployeeService {
 
   EmployeeBean findById(Long id);
 
-  List<EmployeeBean> findByName(String name);
+  EmployeeBean findByName(String name);
 
   List<EmployeeBean> findByDepartment(String department);
 

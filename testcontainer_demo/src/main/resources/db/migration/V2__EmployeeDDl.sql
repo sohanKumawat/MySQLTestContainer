@@ -11,6 +11,12 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`id`)
 );
 
+ALTER TABLE employee
+ADD UNIQUE (name);
+
+ALTER TABLE `employee` 
+ADD UNIQUE INDEX `emp_name_UNIQUE` (`name` ASC) VISIBLE;;
+
 insert into  `employee` (id,name,salary,department,created_by,created_at) VALUES (1,'Sohan', '20000', 'tech','admin@cars24.com',now()); 
 insert into  `employee` (id,name,salary,department,created_by,created_at) VALUES (2,'Sohan1', '20000', 'tech','admin@cars24.com',now());
 insert into  `employee` (id,name,salary,department,created_by,created_at) VALUES (3,'Sohan2', '20000', 'tech','admin@cars24.com',now());

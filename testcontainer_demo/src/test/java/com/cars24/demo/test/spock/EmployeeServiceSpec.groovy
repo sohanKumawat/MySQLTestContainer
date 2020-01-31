@@ -59,15 +59,13 @@ class EmployeeServiceSpec extends Specification {
     request.setName(name)
     request.setDepartment(department)
 
-    def dbId=0;
-
     when : "Pass the employee bean request and save into the db"
     EmployeeBean employeeBean = employeeService
         .save(request);
 
     then: "Compare the save entity name value with passed name value"
     EmployeeBean employee1 = employeeService
-        .findById(employeeBean.getId());
+        .findByName(employeeBean.getName());
 
     then: "Compare the save entity name value with passed name value"
     employee1.getName()== result
@@ -76,7 +74,6 @@ class EmployeeServiceSpec extends Specification {
     employee1.getUserBy() == null
 
     //cleanup:
-
 
     where:
     name            | department      || result
