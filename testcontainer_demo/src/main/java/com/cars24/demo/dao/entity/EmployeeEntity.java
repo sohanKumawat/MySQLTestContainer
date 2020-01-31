@@ -28,6 +28,12 @@ public class EmployeeEntity extends BaseEntity {
 
   private String department;
 
+  public EmployeeEntity(String name, String salary, String department) {
+    this.name = name;
+    this.salary = salary;
+    this.department = department;
+  }
+
 
 
 }

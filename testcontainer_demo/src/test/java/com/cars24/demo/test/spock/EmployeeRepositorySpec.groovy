@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
-import com.cars24.demo.DemoApplication
+import com.cars24.demo.config.DatabaseConfiguration
 import com.cars24.demo.dao.entity.EmployeeEntity
 import com.cars24.demo.dao.repository.EmployeeRepository
 import com.cars24.demo.test.config.TestContainerInitilizer
@@ -18,7 +18,7 @@ import spock.lang.Unroll
 
 
 
-@SpringBootTest(classes = DemoApplication.class)
+@SpringBootTest(classes = DatabaseConfiguration.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @ContextConfiguration(initializers = TestContainerInitilizer.Initializer.class)
