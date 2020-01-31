@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Stepwise
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = DemoApplication.class)
@@ -24,6 +25,7 @@ import spock.lang.Specification
 @ActiveProfiles("test")
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @ContextConfiguration(initializers = TestContainerInitilizer.Initializer.class)
+@Stepwise
 class EmployeeServiceSpec extends Specification {
 
 
@@ -59,19 +61,15 @@ class EmployeeServiceSpec extends Specification {
     request.setName(name)
     request.setDepartment(department)
 
-    when : "Pass the employee bean request and save into the db"
+    // when : "Pass the employee bean request and save into the db"
     EmployeeBean employeeBean = employeeService
         .save(request);
 
-    then: "Compare the save entity name value with passed name value"
-    EmployeeBean employee1 = employeeService
-        .findByName(employeeBean.getName());
-
-    then: "Compare the save entity name value with passed name value"
-    employee1.getName()== result
-
-    and: 'Should return null when a value is not found with the given key'
-    employee1.getUserBy() == null
+    /* then: "Compare the save entity name value with passed name value"
+     EmployeeBean employee1 = employeeService
+     .findByName(name);
+     and: 'Should return null when a value is not found with the given key'
+     employee1.getName()== result*/
 
     //cleanup:
 
@@ -79,6 +77,22 @@ class EmployeeServiceSpec extends Specification {
     name            | department      || result
     "uttarpradesh11"| "786"           || "uttarpradesh11"
     "12342"         | "123"           || "12342"
-    "123451"        | "1234"          || "123451"
+    "12342"         | "1234"          || "12342"
+  }
+
+  def"findEmployee"()
+  {
+
+    when:
+    EmployeeBean employeeb = employeeService
+        .findByName(empName);
+
+    then:
+    employeeb.getName()==result
+
+    where:
+    empName               || result
+    "uttarpradesh11"      || "uttarpradesh11"
+    "12342"               || "12342"
   }
 }

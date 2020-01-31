@@ -50,8 +50,8 @@ class EmployeeRepositorySpec extends Specification {
     EmployeeEntity savedEntity= employeeRepository.save(EMPLOYEE1);
 
     expect :
-
-    savedEntity.getid()!=null
+    savedEntity!=null
+    savedEntity.getName()==name
 
     where:
     name             |  salary   | department      || result
