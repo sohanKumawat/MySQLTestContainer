@@ -20,7 +20,7 @@ public class EmployeeDaoServiceImpl implements EmployeeDaoService {
   }
 
   @Override
-  public List<EmployeeEntity> findByName(String name) {
+  public EmployeeEntity findByName(String name) {
     return employeeRepository.findByName(name);
   }
 

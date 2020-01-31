@@ -8,7 +8,7 @@ import com.cars24.demo.dao.entity.EmployeeEntity;
 @Repository
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> {
 
-  List<EmployeeEntity> findByName(String name);
+  EmployeeEntity findByName(String name);
 
   List<EmployeeEntity> findByDepartment(String department);
 

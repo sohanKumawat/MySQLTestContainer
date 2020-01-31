@@ -29,8 +29,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public EmployeeBean findByName(String name) {
-    List<EmployeeEntity> entity = employeeDaoService.findByName(name);
-    if (CollectionUtils.isEmpty(entity))
+    EmployeeEntity entity = employeeDaoService.findByName(name);
+    if (entity == null)
       throw new ValidationException("Record not available");
     return ObjectMapperUtil.mapper(entity, EmployeeBean.class);
   }

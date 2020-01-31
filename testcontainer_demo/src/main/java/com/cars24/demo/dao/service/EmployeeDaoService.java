@@ -13,7 +13,7 @@ public interface EmployeeDaoService {
 
   Optional<EmployeeEntity> findById(Long id);
 
-  List<EmployeeEntity> findByName(String name);
+  EmployeeEntity findByName(String name);
 
   List<EmployeeEntity> findByDepartment(String department);
 

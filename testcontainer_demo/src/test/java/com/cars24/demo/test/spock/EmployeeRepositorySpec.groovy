@@ -40,18 +40,21 @@ class EmployeeRepositorySpec extends Specification {
   }
 
   @Unroll
-  def"SaveEmployee"()
+  def"SaveAndFindEmployee"()
   {
 
     given :
     EmployeeEntity EMPLOYEE1 = new EmployeeEntity(name,salary,department);
 
-
+    when:
     EmployeeEntity savedEntity= employeeRepository.save(EMPLOYEE1);
 
+    then:
+    EmployeeEntity findEntity= employeeRepository.findByName(name);
+
     expect :
-    savedEntity!=null
-    savedEntity.getName()==name
+    findEntity!=null
+    findEntity.getName()==name
 
     where:
     name             |  salary   | department      || result
