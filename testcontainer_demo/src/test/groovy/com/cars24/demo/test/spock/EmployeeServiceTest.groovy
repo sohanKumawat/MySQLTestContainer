@@ -10,12 +10,7 @@ import org.springframework.test.context.ContextConfiguration
 import com.cars24.demo.DemoApplication
 import com.cars24.demo.bean.EmployeeBean
 import com.cars24.demo.service.EmployeeService
-import com.cars24.demo.test.config.TestContainerInitilizer
-import com.cars24.demo.test.dateprovider.DataProvider
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import spock.lang.Shared
+import com.cars24.demo.test.config.TestContainerInitilizerTest
 import spock.lang.Specification
 import spock.lang.Stepwise
 import spock.lang.Unroll
@@ -25,24 +20,13 @@ import spock.lang.Unroll
 //@ComponentScan(basePackages = "com.cars24")
 @ActiveProfiles("test")
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
-@ContextConfiguration(initializers = TestContainerInitilizer.Initializer.class)
+@ContextConfiguration(initializers = TestContainerInitilizerTest.Initializer.class)
 @Stepwise
-class EmployeeServiceSpec extends Specification {
+class EmployeeServiceTest extends Specification {
 
 
   @Autowired
   private EmployeeService employeeService
-
-  // Must be @Shared or static!
-  def @Shared ObjectMapper mapper
-
-  //Run before all the tests:
-  def setupSpec() {
-    mapper =
-        new ObjectMapper()
-    mapper.registerModule(new JavaTimeModule())
-    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-  }
 
   def cleanupSpec() {
     println("Cleanup after all tests!")
@@ -58,7 +42,7 @@ class EmployeeServiceSpec extends Specification {
     //cleanup block
     //where block
     given:
-    EmployeeBean request = DataProvider.getEmployee();
+    EmployeeBean request = EmployeeBean.builder().department("Tech").name("Sohan").salary("1L").build();
     request.setName(name)
     request.setDepartment(department)
 

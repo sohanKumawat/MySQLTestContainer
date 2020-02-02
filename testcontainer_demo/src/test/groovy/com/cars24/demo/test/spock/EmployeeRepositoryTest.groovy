@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration
 import com.cars24.demo.config.DatabaseConfiguration
 import com.cars24.demo.dao.entity.EmployeeEntity
 import com.cars24.demo.dao.repository.EmployeeRepository
-import com.cars24.demo.test.config.TestContainerInitilizer
+import com.cars24.demo.test.config.TestContainerInitilizerTest
 import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
@@ -21,8 +21,8 @@ import spock.lang.Unroll
 @SpringBootTest(classes = DatabaseConfiguration.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
-@ContextConfiguration(initializers = TestContainerInitilizer.Initializer.class)
-class EmployeeRepositorySpec extends Specification {
+@ContextConfiguration(initializers = TestContainerInitilizerTest.Initializer.class)
+class EmployeeRepositoryTest extends Specification {
 
 
   // Must be @Shared or static!

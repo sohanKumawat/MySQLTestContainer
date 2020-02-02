@@ -13,8 +13,7 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import com.cars24.demo.DemoApplication
 import com.cars24.demo.bean.EmployeeBean
-import com.cars24.demo.test.config.TestContainerInitilizer
-import com.cars24.demo.test.dateprovider.DataProvider
+import com.cars24.demo.test.config.TestContainerInitilizerTest
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
@@ -26,8 +25,8 @@ import spock.lang.Unroll
 @SpringBootTest(classes = DemoApplication.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
-@ContextConfiguration(initializers = TestContainerInitilizer.Initializer.class)
-class EmployeeControllerSpec extends Specification {
+@ContextConfiguration(initializers = TestContainerInitilizerTest.Initializer.class)
+class EmployeeControllerTest extends Specification {
 
   @Autowired
   private MockMvc mvc
@@ -51,7 +50,7 @@ class EmployeeControllerSpec extends Specification {
   def"SaveEmployee"()
   {
     given:
-    EmployeeBean request = DataProvider.getEmployee();
+    EmployeeBean request = EmployeeBean.builder().department("Tech").name("Sohan").salary("1L").build();
     request.setName(name)
     request.setDepartment(department)
 

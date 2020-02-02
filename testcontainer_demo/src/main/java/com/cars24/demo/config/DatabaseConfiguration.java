@@ -7,19 +7,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-
+@EnableJpaRepositories(basePackages = "com.cars24.demo.dao.*",
+    entityManagerFactoryRef = "hrmsEntityManager", transactionManagerRef = "hrmsTransactionManager")
+@EnableTransactionManagement
 public class DatabaseConfiguration {
   @Autowired
   private Environment env;
 
-  @Bean("productEntityManager")
+  @Bean("hrmsEntityManager")
   @Primary
   public LocalContainerEntityManagerFactoryBean productEntityManager() {
     System.out.println("hbm2ddl " + env.getProperty("hibernate.hbm2ddl.auto"));
@@ -39,7 +43,7 @@ public class DatabaseConfiguration {
     return em;
   }
 
-  @Bean("productDataSource")
+  @Bean("hrmsDataSource")
   @Primary
   public DataSource productDataSource() {
 
@@ -58,7 +62,7 @@ public class DatabaseConfiguration {
     return dataSource;
   }
 
-  @Bean("productTransactionManager")
+  @Bean("hrmsTransactionManager")
   @Primary
   public PlatformTransactionManager productTransactionManager() {
     final JpaTransactionManager transactionManager = new JpaTransactionManager();
