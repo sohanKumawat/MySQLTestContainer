@@ -13,7 +13,6 @@ import com.cars24.demo.test.config.TestContainerInitilizerTest
 import com.fasterxml.jackson.databind.ObjectMapper
 import spock.lang.Shared
 import spock.lang.Specification
-import spock.lang.Unroll
 
 
 
@@ -22,7 +21,7 @@ import spock.lang.Unroll
 @ActiveProfiles("test")
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @ContextConfiguration(initializers = TestContainerInitilizerTest.Initializer.class)
-class EmployeeRepositoryTest extends Specification {
+public class EmployeeRepositoryTest extends Specification {
 
 
   // Must be @Shared or static!
@@ -32,12 +31,15 @@ class EmployeeRepositoryTest extends Specification {
   private EmployeeRepository employeeRepository;
 
 
+  def setupSpec() {
+    println("setupSpec before all tests!")
+  }
   def cleanupSpec() {
     println("Cleanup after all tests!")
   }
 
-  @Unroll
-  def"SaveAndFindEmployee"()
+  //@Unroll
+  def"SaveAndFindEmployeeRepo"()
   {
 
     given :

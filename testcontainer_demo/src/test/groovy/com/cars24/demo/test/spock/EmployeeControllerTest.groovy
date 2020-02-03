@@ -19,14 +19,13 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import spock.lang.Shared
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = DemoApplication.class)
 @ActiveProfiles("test")
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @ContextConfiguration(initializers = TestContainerInitilizerTest.Initializer.class)
-class EmployeeControllerTest extends Specification {
+public class EmployeeControllerTest extends Specification {
 
   @Autowired
   private MockMvc mvc
@@ -46,8 +45,8 @@ class EmployeeControllerTest extends Specification {
     println("Cleanup after all tests!")
   }
 
-  @Unroll
-  def"SaveEmployee"()
+  //@Unroll
+  def"SaveEmployeeController"()
   {
     given:
     EmployeeBean request = EmployeeBean.builder().department("Tech").name("Sohan").salary("1L").build();
@@ -74,7 +73,7 @@ class EmployeeControllerTest extends Specification {
     "123451"        | "1234"          || 200
   }
 
-  def"findEmployee"()
+  def"findEmployeeController"()
   {
     mvc.perform(get("/employee/name/"+empName)
         .contentType(org.springframework.http.MediaType.APPLICATION_JSON))

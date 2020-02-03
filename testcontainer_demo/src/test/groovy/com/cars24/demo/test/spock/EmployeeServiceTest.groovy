@@ -13,7 +13,6 @@ import com.cars24.demo.service.EmployeeService
 import com.cars24.demo.test.config.TestContainerInitilizerTest
 import spock.lang.Specification
 import spock.lang.Stepwise
-import spock.lang.Unroll
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = DemoApplication.class)
@@ -22,7 +21,8 @@ import spock.lang.Unroll
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @ContextConfiguration(initializers = TestContainerInitilizerTest.Initializer.class)
 @Stepwise
-class EmployeeServiceTest extends Specification {
+
+public class EmployeeServiceTest extends Specification {
 
 
   @Autowired
@@ -32,8 +32,8 @@ class EmployeeServiceTest extends Specification {
     println("Cleanup after all tests!")
   }
 
-  @Unroll
-  def "SaveEmployee"()
+  // @Unroll
+  def "SaveEmployeeService"()
   {
 
     //setup block
@@ -61,12 +61,12 @@ class EmployeeServiceTest extends Specification {
 
     where:
     name             | department      || result
-    "uttarpradesh11" | "786"           || "uttarpradesh11"
-    "12342"          | "123"           || "12342"
-    "123423"         | "12341"         || "123423"
+    "uttarpradesh1112" | "786"           || "uttarpradesh11"
+    "1234212"          | "123"           || "12342"
+    "12342312"         | "12341"         || "123423"
   }
 
-  def"findEmployee"()
+  def"findEmployeeService"()
   {
 
     when:
@@ -78,7 +78,7 @@ class EmployeeServiceTest extends Specification {
 
     where:
     empName               || result
-    "uttarpradesh11"      || "uttarpradesh11"
-    "12342"               || "12342"
+    "uttarpradesh1112"      || "uttarpradesh1112"
+    "1234212"               || "1234212"
   }
 }

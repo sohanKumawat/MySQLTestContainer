@@ -5,7 +5,7 @@ import com.cars24.demo.service.impl.DemoService
 import spock.lang.Specification
 
 
-class EmployeeServiceMockTest extends Specification {
+public class EmployeeServiceMockTest extends Specification {
 
   def cleanupSpec() {
     println("Cleanup after all tests!")

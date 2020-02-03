@@ -7,12 +7,13 @@ import spock.lang.Specification
 
 public class TestContainerInitilizerTest extends Specification {
 
+  public static MySQLContainer mySQLContainer =null;
   public static class Initializer
   implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
     public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-
-      MySQLContainer mySQLContainer = new MySQLContainer("mysql/mysql-server");
+      if(mySQLContainer==null)
+        mySQLContainer = new MySQLContainer("mysql/mysql-server");
       mySQLContainer.withDatabaseName("HRMS")
       mySQLContainer.start();
       System.setProperty("DB_URL", mySQLContainer.getJdbcUrl());
