@@ -3,6 +3,7 @@ package com.cars24.demo.config;
 import java.util.HashMap;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -22,6 +23,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DatabaseConfiguration {
   @Autowired
   private Environment env;
+
+  @Value("${product.jdbc.url}")
+  private String url;
+
 
   @Bean("hrmsEntityManager")
   @Primary
@@ -47,7 +52,8 @@ public class DatabaseConfiguration {
   @Primary
   public DataSource productDataSource() {
 
-    System.out.println("product.jdbc.url " + env.getProperty("product.jdbc.url"));
+    System.out
+        .println("product.jdbc.url prope " + url + " env" + env.getProperty("product.jdbc.url"));
 
     System.out.println("jdbc.user " + env.getProperty("jdbc.user"));
 

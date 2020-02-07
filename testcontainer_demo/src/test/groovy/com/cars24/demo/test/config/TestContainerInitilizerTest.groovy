@@ -16,9 +16,9 @@ public class TestContainerInitilizerTest extends Specification {
         mySQLContainer = new MySQLContainer("mysql/mysql-server");
       mySQLContainer.withDatabaseName("HRMS")
       mySQLContainer.start();
-      System.setProperty("DB_URL", mySQLContainer.getJdbcUrl());
-      System.setProperty("DB_USERNAME", mySQLContainer.getUsername());
-      System.setProperty("DB_PASSWORD", mySQLContainer.getPassword());
+      System.setProperty("product.jdbc.url", mySQLContainer.getJdbcUrl());
+      System.setProperty("jdbc.user", mySQLContainer.getUsername());
+      System.setProperty("jdbc.pass", mySQLContainer.getPassword());
     }
   }
 }

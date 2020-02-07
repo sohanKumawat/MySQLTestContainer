@@ -56,10 +56,10 @@ public class EmployeeRepositoryTest extends Specification {
     findEntity.getName()==name
 
     where:
-    name             |  salary   | department      || result
-    "uttarpradesh11" | "10000"   | "786"           || 200
-    "12342"          | "20000"   | "123"           || 200
-    "123451"         | "50000"   | "1234"          || 200
+    name               |  salary   | department      || result
+    "uttarpradesh11sd" | "10000"   | "786"           || 200
+    "12342sd"          | "20000"   | "123"           || 200
+    "1234512d"         | "50000"   | "1234"          || 200
 
   }
 }
