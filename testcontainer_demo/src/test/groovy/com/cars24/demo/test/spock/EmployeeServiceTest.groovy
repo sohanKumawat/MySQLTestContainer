@@ -59,10 +59,10 @@ public class EmployeeServiceTest extends Specification {
     //cleanup:
 
     where:
-    name             | department      || result
-    "uttarpradesh1112" | "786"           || "uttarpradesh11"
-    "1234212"          | "123"           || "12342"
-    "12342312"         | "12341"         || "123423"
+    name             | department      
+    "uttarpradesh1112f" | "786"         
+    "1234212f"          | "123"        
+    "12342312f"         | "12341"      
   }
 
   def"findEmployeeService"()
@@ -76,8 +76,8 @@ public class EmployeeServiceTest extends Specification {
     employeeb.getName()==result
 
     where:
-    empName               || result
-    "uttarpradesh1112"      || "uttarpradesh1112"
-    "1234212"               || "1234212"
+    empName                  || result
+    "uttarpradesh1112f"      || "uttarpradesh1112f"
+    "1234212f"               || "1234212f"
   }
 }
