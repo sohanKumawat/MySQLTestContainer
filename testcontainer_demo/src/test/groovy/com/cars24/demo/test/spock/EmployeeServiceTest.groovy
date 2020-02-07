@@ -21,7 +21,6 @@ import spock.lang.Stepwise
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 @ContextConfiguration(initializers = TestContainerInitilizerTest.Initializer.class)
 @Stepwise
-
 public class EmployeeServiceTest extends Specification {
 
 
