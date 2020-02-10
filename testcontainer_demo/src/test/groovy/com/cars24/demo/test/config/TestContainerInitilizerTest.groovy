@@ -3,6 +3,7 @@ package com.cars24.demo.test.config;
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.testcontainers.containers.MySQLContainer
+
 import spock.lang.Specification
 
 public class TestContainerInitilizerTest extends Specification {
